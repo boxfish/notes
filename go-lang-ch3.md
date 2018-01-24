@@ -45,5 +45,13 @@
 2. Strings may be compared with comparison operators like `==` and `<`; the comparison is done byte by byte, so the result is the natural lexicographic ordering.
 3. Since strings are immutable, constructions that try to modify a string’s data in place are not allowed. Immutability means that it is safe for two copies of a string to share the same underlying memory, making it cheap to copy strings of any length. Similarly, a string s and a substring like `s[7:]` may safely share the same data, so the substring operation is also cheap. No new memory is allocated in either case.
 4. A raw string literal is written ``...``, using backquotes instead of double quotes. Within a raw string literal, no escape sequences are processed
+5. UTF-8 is a variable-length encoding of Unicode code points as bytes. It uses between 1 and 4 bytes to represent each rune, but only 1 byte for ASCII characters, and only 2 or 3 bytes for most runes in common use.
+
+      ```
+      0xxxxxx                                   runes 0−127       (ASCII)
+      11xxxxx 10xxxxxx                          128−2047          (values <128 unused)
+      110xxxx 10xxxxxx 10xxxxxx                 2048−65535        (values <2048 unused)
+      1110xxx 10xxxxxx 10xxxxxx 10xxxxxx        65536−0x10ffff    (other values unused)
+      ```
 
 
