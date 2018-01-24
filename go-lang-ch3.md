@@ -62,6 +62,53 @@
 10. Converting an integer value to a string interprets the integer as a rune value, and yields the UTF-8 representation of that rune. `string(65)` yields `"A"`, not `"65"`. To convert an integer to a string, one option is to use `fmt.Sprintf`; another is to use the function `strconv.Itoa`.
 11. To efficiently build or manipulate strings, use `bytes.Buffer`.
 
+## Constants
+1. Many computations on constants can be completely evaluated at compile time, reducing the work necessary at run time and enabling other compiler optimizations. The results of all arithmetic, logical, and comparison operations applied to constant operands are themselves constants, as are the results of conversions and calls to certain built-in functions.
+2. Since their values are known to the compiler, constant expressions may appear in types, specif- ically as the length of an array type.
+3. When a sequence of constants is declared as a group, the right-hand side expression may be omitted for all but the first of the group, implying that the previous expression and its type should be used again.
+            
+      ```
+      const (
+            a=1
+            b 
+            c=2 
+            d
+      )
+      fmt.Println(a, b, c, d) // "1 1 2 2"
+      ```
 
+4. A const declaration may use the constant generator `iota`, which is used to create a sequence of related values without spelling out each one explicitly, aka. enum.
 
+     ```
+     // enum
+     type Weekday int
+     const (
+         Sunday Weekday = iota
+         Monday
+         Tuesday
+         Wednesday
+         Thursday
+         Friday
+         Saturday
+      )
+      
+      // bit masks
+      type Flags uint
+      const (
+         FlagUp Flags = 1 << iota
+         FlagBroadcast
+         FlagLoopback
+         FlagP2P
+         FlagMulticast
+      )
+      
+      // powers
+      const (
+          _ = 1 << (10 * iota)
+          KiB // 1024
+          MiB // 1048576
+          GiB // 1073741824
+          TiB // 1099511627776
+      )
+      ```
 
