@@ -32,5 +32,11 @@
       fmt.Println(nan == nan, nan < nan, nan > nan) // "false false false"
       ```
  
+ ## Complex Numbers
+ 1. The built-in function `complex` creates a complex number from its real and imaginary components, and the built-in `real` and `imag` functions extract those components.
+ 2. If a floating-point literal or decimal integer literal is immediately followed by `i`, such as `3.141592i` or `2i`, it becomes an imaginary literal, denoting a complex number with a zero real component.
+ 3. Under the rules for constant arithmetic, complex constants can be added to other constants (integer or floating point, real or imaginary), allowing us to write complex numbers naturally, like `1+2i`, or equivalently, `2i+1`.
  
+## Booleans
+1. There is no implicit conversion from a boolean value to a numeric value like 0 or 1, or vice versa.
 
