@@ -47,4 +47,23 @@
          _, ok = x.(T)  // type assertion
          _, ok = <-ch   // channel receive
       ```
-3. 
+
+## 2.5 Type Declaration
+1. One use case for type declaration is to define Celsius and Fahrenheit as two types, so that we don't accidentally combine values in two units together without explicit conversion.
+2. For every type `T`, there is a corresponding conversion operation `T(x)` that converts the value `x` to type `T`. 
+3. A conversion from one type to another is allowed if both have the same underlying type, or if both are unnamed pointer types that point to variables of the same underlying type; these conversions change the type but not the representation of the value. 
+4. Conversions are also allowed between numeric types, and between string and some slice types. These conversions may change the representation of the value.
+5. Converting a string to a `[]byte` slice allocates a copy of the string data.
+
+## 2.6 Pacakges and Files
+1. Any file may contain any number of `init` functions that are automatically executed when the program starts, in the order in which they are declared.
+2. Understand the population count example!
+
+## 2.7 Scopes
+1. A syntactic block is a sequence of statements enclosed in braces like those that surround the body of a function or loop. A name declared inside a syntactic block is not visible outside that block.
+2. There is a lexical block for the entire source code, called the universe block; for each package; for each file; for each for, if, and switch statement; for each case in a switch or select statement; and, of course, for each explicit syntactic block.
+3. The declarations of built-in types, functions, and constants like `int`, `len`, and `true` are in the universe block and can be referred to throughout the entire program.
+4. Declarations outside any function, that is, at package level, can be referred to from any file in the same package.
+5. Imported packages are declared at the file level, so they can be referred to from the same file.
+6. Normal practice in Go is to deal with the error in the if block and then return, so that the successful execution path is not indented.
+
