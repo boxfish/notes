@@ -40,3 +40,10 @@
 ## Booleans
 1. There is no implicit conversion from a boolean value to a numeric value like 0 or 1, or vice versa.
 
+## Strings
+1. The built-in `len` function returns the number of bytes (not runes) in a string, and the index operation `s[i]` retrieves the `i`-th byte of string `s`
+2. Strings may be compared with comparison operators like `==` and `<`; the comparison is done byte by byte, so the result is the natural lexicographic ordering.
+3. Since strings are immutable, constructions that try to modify a string’s data in place are not allowed. Immutability means that it is safe for two copies of a string to share the same underlying memory, making it cheap to copy strings of any length. Similarly, a string s and a substring like `s[7:]` may safely share the same data, so the substring operation is also cheap. No new memory is allocated in either case.
+4. A raw string literal is written ``...``, using backquotes instead of double quotes. Within a raw string literal, no escape sequences are processed
+
+
