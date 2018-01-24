@@ -48,10 +48,20 @@
 5. UTF-8 is a variable-length encoding of Unicode code points as bytes. It uses between 1 and 4 bytes to represent each rune, but only 1 byte for ASCII characters, and only 2 or 3 bytes for most runes in common use.
 
       ```
-      0xxxxxx                                   runes 0−127       (ASCII)
-      11xxxxx 10xxxxxx                          128−2047          (values <128 unused)
-      110xxxx 10xxxxxx 10xxxxxx                 2048−65535        (values <2048 unused)
-      1110xxx 10xxxxxx 10xxxxxx 10xxxxxx        65536−0x10ffff    (other values unused)
+      0xxxxxxx                                   runes 0−127       (ASCII)
+      110xxxxx 10xxxxxx                          128−2047          (values <128 unused)
+      1110xxxx 10xxxxxx 10xxxxxx                 2048−65535        (values <2048 unused)
+      11110xxx 10xxxxxx 10xxxxxx 10xxxxxx        65536−0x10ffff    (other values unused)
       ```
+
+6. Thanks to the nice properties of UTF-8, many string operations don’t require decoding. We can test whether one string contains another as a prefix using the same logic for UTF-8-encoded text as for raw bytes.
+
+7. `len` function gives the number of bytes in a string. To count the number of runes in a string, use the `utf8.RuneCountInString(s)`. 8. Go’s range loop, when applied to a string, performs UTF-8 decoding implicitly, i.e. the index jumps by more than 1 for each non-ASCII rune.
+8. A `[]rune` conversion applied to a UTF-8-encoded string decodes and returns the sequence of Unicode code points that the string encodes.
+9. A `[]byte` conversion to a string makes a copy of it without decoding. It allocates a new byte array holding a copy of the bytes of s, and yields a slice that references the entirety of that array.
+10. Converting an integer value to a string interprets the integer as a rune value, and yields the UTF-8 representation of that rune. `string(65)` yields `"A"`, not `"65"`. To convert an integer to a string, one option is to use `fmt.Sprintf`; another is to use the function `strconv.Itoa`.
+11. To efficiently build or manipulate strings, use `bytes.Buffer`.
+
+
 
 
