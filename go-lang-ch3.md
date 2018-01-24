@@ -63,8 +63,9 @@
 11. To efficiently build or manipulate strings, use `bytes.Buffer`.
 
 ## Constants
+0. The underlying type of every constant is a basic type: boolean, string, or number.
 1. Many computations on constants can be completely evaluated at compile time, reducing the work necessary at run time and enabling other compiler optimizations. The results of all arithmetic, logical, and comparison operations applied to constant operands are themselves constants, as are the results of conversions and calls to certain built-in functions.
-2. Since their values are known to the compiler, constant expressions may appear in types, specif- ically as the length of an array type.
+2. Since their values are known to the compiler, constant expressions may appear in types, specifically as the length of an array type.
 3. When a sequence of constants is declared as a group, the right-hand side expression may be omitted for all but the first of the group, implying that the previous expression and its type should be used again.
             
       ```
@@ -112,3 +113,4 @@
       )
       ```
 
+5. Untyped constants not only retain their higher precision until later, but they can participate in many more expressions than committed constants without requiring conversions. 
