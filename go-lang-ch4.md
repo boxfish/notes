@@ -39,4 +39,6 @@
 6. The build-in funciton `append`can be used to append items to slices. Internally, it checks the capacity, if greater than length, extend the slice by defining a larger slice and add the new item. They share the same underlying array. If not enough capacity, allocate a new array enough to hold the new element, copy all existing elements and the new element. 
 7. The strategy for allocation of new array in `append` is to double the existing length, which can achieve amortized linear complexity. (why?)
 8. the built-in function `copy` can be used to copy elements from one slice to another of the same type. The total number of elements that are copied is returned, which is the smaller of the length of destination and source slices.
+9. The `append` can accept any number of final arguments. This is defined using `y ...int`, and called with `...y`.
+
 
